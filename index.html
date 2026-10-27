@@ -3,83 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gbot Mini Game</title>
-    <!-- Подключаем официальный скрипт Discord Activities SDK -->
+    <title>Gbot</title>
     <script src="https://jsdelivr.net"></script>
     <style>
-        body {
-            background-color: #2f3136;
-            color: #ffffff;
-            font-family: 'Whitney', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .game-box {
-            background-color: #36393f;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-        button {
-            background-color: #5865F2;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #4752C4;
-        }
     </style>
 </head>
 <body>
-
-    <div class="game-box">
-        <h1>🎮 Кликер для Discord Activity</h1>
-        <p>Ваш ID в Discord: <span id="user-id">Загрузка...</span></p>
-        <p>Счёт в игре: <span id="score">0</span></p>
-        <button id="click-btn" onclick="hitButton()">Кликнуть!</button>
-    </div>
-
     <script>
-        // Инициализируем Discord SDK. Замените КЛИЕНТ_ИД на ID вашего бота из Developer Portal
-        const discordSdk = new DiscordSDK({ client_id: 1539728280507129956 });
-        
-        let score = 0;
-
-        async function startDiscordActivity() {
-            try {
-                // Ждем, пока Дискорд подтвердит загрузку окна
-                await discordSdk.ready();
-                
-                // Отображаем ID пользователя, который запустил активность
-                document.getElementById('user-id').innerText = discordSdk.userId || "Режим разработчика";
-            } catch (error) {
-                console.error("Ошибка инициализации Discord SDK:", error);
-                document.getElementById('user-id').innerText = "Вне Дискорда";
-            }
-        }
-
-        function hitButton() {
-            score++;
-            document.getElementById('score').innerText = score;
-            
-            // Сюда мы позже добавим fetch() запрос к вашему Python-серверу на SQLite,
-            // чтобы сохранять этот счёт прямо в базу данных бота!
-        }
-
-        // Запуск при загрузке страницы
-        startDiscordActivity();
     </script>
-
 </body>
 </html>
